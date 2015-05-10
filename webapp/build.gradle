@@ -1,0 +1,53 @@
+apply plugin: 'jetty'
+apply plugin: 'war'
+
+
+dependencies {
+
+    compile 'org.jminix:jminix:1.1.0'
+
+    // test dependencies
+    testCompile 'junit:junit:4.11'
+    testCompile 'org.hamcrest:hamcrest-all:1.3'
+    testCompile 'org.mockito:mockito-all:1.10.8'
+    testCompile 'org.springframework:spring-test:4.0.3.RELEASE'
+
+}
+
+repositories {
+    maven { url 'http://maven.restlet.org' }
+}
+
+jettyRun {
+    httpPort = 8080
+    contextPath = '/'
+    daemon = false
+}
+
+jettyRunWar {
+    httpPort = 8080
+    contextPath = '/'
+    daemon = false
+}
+
+import org.apache.tools.ant.filters.*
+
+war {
+
+    eachFile {
+        if (it.name == 'build.jsp') {
+            it.filter(ReplaceTokens, tokens: [
+                    "BUILD_ID" : System.getProperty("BUILD_ID") + "",
+                    "GIT_COMMIT" : System.getProperty("GIT_COMMIT") + "",
+                    "BUILD_NUMBER" : System.getProperty("BUILD_NUMBER") + "",
+                    "PROJECT_VERSION" : project.version
+            ])
+        }
+    }
+
+
+}
+
+[jettyRun, jettyRunWar, jettyStop]*.stopPort = 8081
+[jettyRun, jettyRunWar, jettyStop]*.stopKey = 'stopKey'
+
