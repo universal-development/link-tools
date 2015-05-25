@@ -1,0 +1,10 @@
+
+def unidevPlatformVerion = "1.2.0"
+
+dependencies {
+
+    compile "com.unidev.platform:platform-common:$unidevPlatformVerion"
+
+
+}
+
