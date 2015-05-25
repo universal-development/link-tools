@@ -8,24 +8,35 @@
         Webapp description
     </description>
 
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+    <distributable/>
 
-    <!-- Loads Spring Security config file -->
+    <!-- Spring MVC setup -->
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
             classpath:/webapp-beans.xml,
             classpath:/core-beans.xml,
             classpath:/spring-security-conf.xml
-
         </param-value>
     </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
 
     <servlet>
         <servlet-name>mvc-dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>
+                classpath:/webapp-beans.xml,
+                classpath:/core-beans.xml,
+                classpath:/spring-security-conf.xml
+            </param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
