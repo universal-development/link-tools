@@ -3,7 +3,7 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
 
-    group = 'com.unidev.templatewebapp'
+    group = 'com.unidev.app.templatewebapp'
     version = '1.0.0-SNAPSHOT'
 
     apply from: 'http://dev.local/gradle/uploadArchivesSftp.groovy'
