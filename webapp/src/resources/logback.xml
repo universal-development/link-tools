@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
+    <property resource="application.properties" />
+    <property resource="application.prod.properties" />
+
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
         <resetJUL>true</resetJUL>
     </contextListener>
@@ -9,18 +12,18 @@
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%.-1level|%-40.40logger{0}|%msg%n</pattern>
+            <pattern>%date{ISO8601} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${user.home}/webapp/logs/log.${ENV}.log</file>
+        <file>${user.home}/${application.name}/logs/log.${ENV}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${user.home}/webapp/logs/log.${ENV}.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <fileNamePattern>${user.home}/${application.name}/logs/log.${ENV}.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
         </rollingPolicy>
 
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level - %msg%n</pattern>
+            <pattern>%date{ISO8601} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
 
     </appender>
@@ -29,14 +32,14 @@
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>
         </filter>
-        <file>${user.home}/webapp/logs/stash.${ENV}.log</file>
+        <file>${user.home}/${application.name}/logs/stash.${ENV}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- rollover daily -->
-            <fileNamePattern>${user.home}/webapp/logs/stash.${ENV}.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <fileNamePattern>${user.home}/${application.name}/logs/stash.${ENV}.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <!-- or whenever the file size reaches 10MB -->
-                <maxFileSize>10MB</maxFileSize>
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
 
