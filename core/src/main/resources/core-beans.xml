@@ -15,5 +15,7 @@
     <context:annotation-config/>
     <context:component-scan base-package="com.unidev"/>
 
+    <!-- JMX -->
+    <context:mbean-export registration="replaceExisting" />
 
 </beans>
