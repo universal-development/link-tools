@@ -7,6 +7,8 @@ def springSecurityVersion = "3.2.5.RELEASE"
 
 dependencies {
 
+    compile project(":core")
+
     compile "org.springframework:spring-webmvc:$springVersion"
     compile "org.springframework:spring-context-support:$springVersion"
 
