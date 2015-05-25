@@ -12,20 +12,8 @@ subprojects {
     
     dependencies {
 
-        def springVersion = "4.0.6.RELEASE"
-        compile "org.springframework:spring-webmvc:$springVersion"
-        compile "org.springframework:spring-context-support:$springVersion"
+        compile 'com.unidev.platform:platform-common:1.2.0'
 
-
-        def springSecurityVersion = "3.2.5.RELEASE"
-        compile "org.springframework.security:spring-security-web:$springSecurityVersion"
-        compile "org.springframework.security:spring-security-config:$springSecurityVersion"
-
-        compile 'com.unidev.platform:platform-common:1.1.0'
-        compile 'com.unidev.platform:platform-common-j2ee:1.1.0'
-        compile 'com.unidev.platform:platform-jobs-timer:1.0.0'
-        compile 'com.unidev.platform:platform-templates:1.1.0'
-        compile 'com.unidev.polydata:polydata-core:1.7.0'
 
         // test dependencies
         testCompile 'junit:junit:4.11'
