@@ -18,4 +18,8 @@
     <!-- JMX -->
     <context:mbean-export registration="replaceExisting" />
 
+    <bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
+        <property name="locateExistingServerIfPossible" value="false" />
+    </bean>
+
 </beans>
