@@ -37,10 +37,11 @@ jettyRunWar {
     daemon = false
 }
 
+[jettyRun, jettyRunWar, jettyStop]*.stopPort = 8081
+[jettyRun, jettyRunWar, jettyStop]*.stopKey = 'stopKey'
+
 import org.apache.tools.ant.filters.*
-
 war {
-
     eachFile {
         if (it.name == 'build.jsp') {
             it.filter(ReplaceTokens, tokens: [
@@ -51,10 +52,4 @@ war {
             ])
         }
     }
-
-
 }
-
-[jettyRun, jettyRunWar, jettyStop]*.stopPort = 8081
-[jettyRun, jettyRunWar, jettyStop]*.stopKey = 'stopKey'
-
