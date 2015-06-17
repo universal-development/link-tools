@@ -8,6 +8,7 @@
     <http auto-config="true">
         <intercept-url pattern="/jmx/**" access="ROLE_ADMIN" />
         <intercept-url pattern="/build" access="ROLE_ADMIN" />
+        <intercept-url pattern="/logs**" access="ROLE_ADMIN" />
     </http>
 
     <authentication-manager>

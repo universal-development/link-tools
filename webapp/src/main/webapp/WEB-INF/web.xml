@@ -70,7 +70,16 @@
         <url-pattern>/jmx/*</url-pattern>
     </servlet-mapping>
 
+    <!-- Logback logs view -->
 
+    <servlet>
+        <servlet-name>ViewStatusMessages</servlet-name>
+        <servlet-class>ch.qos.logback.classic.ViewStatusMessagesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewStatusMessages</servlet-name>
+        <url-pattern>/logs</url-pattern>
+    </servlet-mapping>
 
     <!-- Build information file -->
     <servlet>
