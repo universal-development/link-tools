@@ -4,6 +4,7 @@ apply plugin: 'war'
 
 def springVersion = "4.0.6.RELEASE"
 def springSecurityVersion = "3.2.5.RELEASE"
+def unidevPlatformVersion = "1.2.0"
 
 dependencies {
 
@@ -15,7 +16,7 @@ dependencies {
     compile "org.springframework.security:spring-security-web:$springSecurityVersion"
     compile "org.springframework.security:spring-security-config:$springSecurityVersion"
 
-    compile 'com.unidev.platform:platform-common-j2ee:1.2.0'
+    compile "com.unidev.platform:platform-common-j2ee:$unidevPlatformVersion"
 
     compile 'org.jminix:jminix:1.2.0'
 
