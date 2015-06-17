@@ -50,16 +50,13 @@
         <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
     </appender>
 
-    <root level="WARN">
-        <appender-ref ref="console" />
-    </root>
+    <logger name="com.unidev" level="${log.level.unidev:-INFO}" />
 
-    <root level="INFO">
+    <root level="${log.level.root:-INFO}">
         <appender-ref ref="file" />
         <appender-ref ref="stash" />
     </root>
 
-    <logger nam="com.unidev" level="${log.level.unidev:-INFO}" />
-    <root level="${log.level.root:-INFO}" />
+
 
 </configuration>
