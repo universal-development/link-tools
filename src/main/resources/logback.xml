@@ -53,6 +53,7 @@
     <logger name="com.unidev" level="${log.level.unidev:-INFO}" />
 
     <root level="${log.level.root:-INFO}">
+        <appender-ref ref="console" />
         <appender-ref ref="file" />
         <appender-ref ref="stash" />
     </root>
