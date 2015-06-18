@@ -1,5 +1,5 @@
-# template-projects
-Vaading + SpringBoot project
+# Template Vaadin and SpringBoot
+Vaadin + SpringBoot project
 
 License
 =======
