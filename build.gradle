@@ -11,17 +11,17 @@ buildscript {
     }
 }
 
-apply from: 'http://dev.local/gradle/uploadArchivesSftp.groovy'
-apply from: 'http://dev.local/gradle/javadoc.groovy'
-apply from: 'http://dev.local/gradle/defaultRepositories.groovy'
-
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot' 
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'maven'
+
+apply from: 'http://dev.local/gradle/uploadArchivesSftp.groovy'
+apply from: 'http://dev.local/gradle/javadoc.groovy'
+apply from: 'http://dev.local/gradle/defaultRepositories.groovy'
+
 
 
 def unidevPlatformVersion = "1.2.0"
@@ -33,6 +33,13 @@ jar {
     baseName = 'templatevaadinboot'
     version = '0.0.1-SNAPSHOT'
 }
+
+idea {
+      module {
+        downloadJavadoc = true
+        downloadSources = true
+      }
+    }
 
 dependencies {
     compile("com.vaadin:vaadin-spring-boot-starter:1.0.0.beta3")
