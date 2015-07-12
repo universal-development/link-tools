@@ -1,5 +1,5 @@
-# Template Vaadin and SpringBoot
-Vaadin + SpringBoot project
+# Link Tools
+Tool application for processing links to webpages
 
 License
 =======
