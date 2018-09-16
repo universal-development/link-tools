@@ -1,13 +1,25 @@
 subprojects {
+
+    apply plugin: 'maven'
     apply plugin: 'java'
+    apply plugin: 'idea'
 
     group = 'com.unidev.linktools'
     version = '0.0.1-SNAPSHOT'
     sourceCompatibility = 10
+
+    apply from: 'http://dev.local/gradle/uploadArchivesSftp.groovy'
+    apply from: 'http://dev.local/gradle/defaultRepositories.groovy'
+    apply from: 'http://dev.local/gradle/javadoc.groovy'
 
     repositories {
         mavenCentral()
         maven { url "https://repo.spring.io/milestone" }
     }
 
+    buildscript {
+        repositories {
+            mavenCentral()
+        }
+    }
 }
