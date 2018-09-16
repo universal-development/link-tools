@@ -2,6 +2,12 @@
 
 Service for loading and processing high volume of http links
 
+## Dev setup
+
+Mongodb deployment
+
+`docker run --name link-tools-mongodb -p 27017:27017 -v /tmp/link-tools-mongodb:/data/db mongo:4.1.3-xenial`
+
 License
 =======
  
