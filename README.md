@@ -1,10 +1,11 @@
 # Link Tools
-Tool application for processing links to webpages
+
+Service for loading and processing high volume of http links
 
 License
 =======
  
-    Copyright (c) 2015 Denis O <denis@universal-development.com>
+    Copyright (c) 2018 Denis O <denis.o@linux.com>
  
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
