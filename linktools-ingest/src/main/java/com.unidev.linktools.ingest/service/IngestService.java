@@ -10,10 +10,7 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Date;
 import java.util.Deque;
 import java.util.LinkedList;
@@ -30,6 +27,8 @@ public class IngestService {
 
     private static final int PROCESSING_THREADS = 10;
 
+    private static final int MAX_QUEUE_SIZE = 1000;
+
     private final LinkBucketRepository linkBucketRepository;
 
     private final MongoTemplate mongoTemplate;
@@ -39,7 +38,7 @@ public class IngestService {
     private final ScheduledExecutorService executorService;
 
     @Autowired
-    public IngestService(TaskExecutor taskExecutor, LinkBucketRepository linkBucketRepository, MongoTemplate mongoTemplate) {
+    public IngestService(LinkBucketRepository linkBucketRepository, MongoTemplate mongoTemplate) {
         this.linkBucketRepository = linkBucketRepository;
         this.mongoTemplate = mongoTemplate;
 
@@ -54,9 +53,19 @@ public class IngestService {
         }
         final LinkBucket linkBucket = fetchOrCreateLinkBucket(bucketName);
 
-        try (FileReader fileReader = new FileReader(ingestFile)) {
+        try (BufferedReader br = new BufferedReader(new FileReader(ingestFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                while(processingQueue.size() > MAX_QUEUE_SIZE) {
+                    log.info("Ingesting queue full {}, waiting {}", processingQueue.size(), filePath);
+                    Thread.sleep(500);
+                }
+
+                IngestProcessingItem ingestProcessingItem = IngestProcessingItem.builder().sourceFile(filePath).rawLine(line).linkBucket(linkBucket).build();
+                processingQueue.offer(ingestProcessingItem);
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Failed to read file {}", ingestFile, e);
         }
     }
 
@@ -83,7 +92,7 @@ public class IngestService {
         }
 
         public void run() {
-            while (true) {
+            while (true) { // TODO: check service to know when to stop thread, when app stops
                 IngestProcessingItem item = processingQueue.poll();
                 if (item == null) { // no more items,
                     try {
