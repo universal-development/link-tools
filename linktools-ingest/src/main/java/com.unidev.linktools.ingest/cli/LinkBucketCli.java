@@ -1,12 +1,13 @@
 package com.unidev.linktools.ingest.cli;
 
 import com.unidev.linktools.dao.LinkBucketRepository;
+import com.unidev.linktools.ingest.service.IngestService;
 import com.unidev.linktools.model.LinkBucket;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellOption;
 
 @ShellComponent
 @Log4j2
@@ -14,12 +15,12 @@ public class LinkBucketCli {
 
     private final LinkBucketRepository repository;
 
-    private MongoTemplate mongoTemplate;
+    private IngestService ingestService;
 
     @Autowired
-    public LinkBucketCli(LinkBucketRepository repository, MongoTemplate mongoTemplate) {
+    public LinkBucketCli(LinkBucketRepository repository, IngestService ingestService) {
         this.repository = repository;
-        this.mongoTemplate = mongoTemplate;
+        this.ingestService = ingestService;
     }
 
     @ShellMethod("List available buckets")
@@ -30,8 +31,13 @@ public class LinkBucketCli {
             list.append(linkBucket.toString()).append(System.lineSeparator());
         }
 
-
         return list.toString();
+    }
+
+    @ShellMethod("Ingest file")
+    public String ingestFile(@ShellOption String bucket, @ShellOption String filePath) {
+        ingestService.ingestFile(bucket, filePath);
+        return "Ingesting completed";
     }
 
 }

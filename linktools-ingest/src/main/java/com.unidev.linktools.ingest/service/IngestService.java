@@ -46,6 +46,7 @@ public class IngestService {
     }
 
     public void ingestFile(String bucketName, String filePath) {
+        log.info("Ingesting {} to {}", filePath, bucketName);
         File ingestFile = new File(filePath);
         if (!ingestFile.exists()) {
             log.warn("Not existing file {}", filePath);
@@ -60,6 +61,7 @@ public class IngestService {
                     log.info("Ingesting queue full {}, waiting {}", processingQueue.size(), filePath);
                     Thread.sleep(500);
                 }
+                log.info("Reading line {}", filePath);
 
                 IngestProcessingItem ingestProcessingItem = IngestProcessingItem.builder().sourceFile(filePath).rawLine(line).linkBucket(linkBucket).build();
                 processingQueue.offer(ingestProcessingItem);

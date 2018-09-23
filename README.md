@@ -8,6 +8,9 @@ Mongodb deployment
 
 `docker run --name link-tools-mongodb -p 27017:27017 -v /tmp/link-tools-mongodb:/data/db mongo:4.1.3-xenial`
 
+`ingest-file --bucket test1 --file-path "Success.txt"`
+
+
 License
 =======
  
