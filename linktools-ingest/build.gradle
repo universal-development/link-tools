@@ -10,19 +10,23 @@ buildscript {
     }
 }
 
+plugins {
+    id 'io.franzbecker.gradle-lombok' version '1.8'
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-
-repositories {
-    mavenCentral()
-    maven { url "https://repo.spring.io/milestone" }
+lombok {
+    version = '1.18.2'
+    sha256 = ""
 }
 
 
 dependencies {
+    compile project(':linktools-common')
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile('org.springframework.shell:spring-shell-starter:2.0.0.RELEASE')
 
