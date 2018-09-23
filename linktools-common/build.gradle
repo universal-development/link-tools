@@ -9,6 +9,7 @@ apply plugin: 'eclipse'
 sourceCompatibility = 1.8
 
 dependencies {
+    compile 'org.springframework.data:spring-data-mongodb:2.1.0.RELEASE'
 
     compileOnly('org.projectlombok:lombok')
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
