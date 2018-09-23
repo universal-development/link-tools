@@ -29,6 +29,7 @@ dependencies {
     compile project(':linktools-common')
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile 'org.springframework.shell:spring-shell-starter:2.0.1.BUILD-SNAPSHOT'
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
 
     compile("javax.xml.bind:jaxb-api:2.3.0")
     compile("com.sun.xml.bind:jaxb-core:2.2.11")
