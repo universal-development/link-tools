@@ -1,27 +1,32 @@
 # Link Tools
-
 Service for loading and processing high volume of http links
 
 ## Dev setup
-
 Mongodb deployment
 
-`docker run --name link-tools-mongodb -p 27017:27017 -v /tmp/link-tools-mongodb:/data/db mongo:4.1.3-xenial`
+```
+docker run --name link-tools-mongodb -p 27017:27017 -v /tmp/link-tools-mongodb:/data/db mongo:4.1.3-xenial
 
-`ingest-file --bucket test1 --file-path "Success.txt"`
+ingest-file --bucket test1 --file-path "Success.txt"
+```
 
+## Workflow
+Example workflow of processing files:
+ - ingest
+ - processing
+ - export
 
 License
 =======
- 
-    Copyright (c) 2018 Denis O <denis.o@linux.com>
- 
+
+    Copyright (c) 2018,2019 Denis O <denis.o@linux.com>
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
- 
+
        http://www.apache.org/licenses/LICENSE-2.0
- 
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
