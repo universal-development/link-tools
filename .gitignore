@@ -12,7 +12,7 @@
 .springBeans
 .externalToolBuilders
 .gradle
-
+spring-shell.log
 # IntelliJ Idea project files
 .idea
 .idea/*
