@@ -3,6 +3,11 @@ plugins {
 	id 'java'
     id 'io.franzbecker.gradle-lombok' version '1.8'
 }
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
 
 apply plugin: 'io.spring.dependency-management'
 
@@ -10,11 +15,6 @@ group = 'com.unidev.linktools'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-}
 
 lombok {
     version = '1.18.6'
