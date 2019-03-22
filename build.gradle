@@ -6,7 +6,7 @@ subprojects {
 
     group = 'com.unidev.linktools'
     version = '0.0.1-SNAPSHOT'
-    sourceCompatibility = 10
+    sourceCompatibility = 11
 
     apply from: 'http://dev.local/gradle/uploadArchivesSftp.groovy'
     apply from: 'http://dev.local/gradle/defaultRepositories.groovy'

@@ -1,3 +1,9 @@
+pluginManagement {
+	repositories {
+		gradlePluginPortal()
+	}
+}
+
 include "linktools-common"
 include "linktools-ingest"
 include "linktools-process"
