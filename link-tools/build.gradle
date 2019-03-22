@@ -17,6 +17,10 @@ lombok {
 	sha256 = ""
 }
 
+bootRun {
+	standardInput = System.in
+}
+
 dependencies {
 
 	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'

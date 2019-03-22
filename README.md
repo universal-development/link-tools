@@ -5,16 +5,21 @@ Service for loading and processing high volume of http links
 Mongodb deployment
 
 ```
-docker run --name link-tools-mongodb -p 27017:27017 -v /tmp/link-tools-mongodb:/data/db mongo:4.1.3-xenial
-
-ingest-file --bucket test1 --file-path "Success.txt"
+docker run --rm --name link-tools-mongodb -p 27017:27017 -v /tmp/link-tools-mongodb:/data/db mongo:4.1.3-xenial
 ```
 
 ## Workflow
+
 Example workflow of processing files:
  - ingest
  - processing
  - export
+
+File ingesting:
+
+```
+ingest-file --bucket test1 --file-path "samples/input.txt"
+```
 
 License
 =======
